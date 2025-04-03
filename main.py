@@ -374,7 +374,8 @@ if __name__ == "__main__":
             )
         }
     )
-'''
+    
+    '''
     template_bot = TemplateForecaster(
         research_reports_per_question=1,
         predictions_per_research_report=5,
@@ -392,7 +393,7 @@ if __name__ == "__main__":
         #     "summarizer": "openai/gpt-4o-mini",
         # },
     )
-'''
+    '''
 
     if run_mode == "tournament":
         forecast_reports = asyncio.run(
