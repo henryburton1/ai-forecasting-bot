@@ -362,13 +362,13 @@ if __name__ == "__main__":
         skip_previously_forecasted_questions=False,
         llms={
             "default": GeneralLlm(
-                model="perplexity/o3-mini",  # o3 mini does the forecasting
+                model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
             "summarizer": GeneralLlm(
-                model="anthropic/claude-sonnet-3.7-latest",  # Claude Sonnet helps with summarizing research
+                model="metaculus/anthropic/claude-sonnet-3.7-latest",  # Claude Sonnet helps with summarizing research
                 temperature=0.1,
                 timeout=40,
                 allowed_tries=2,
