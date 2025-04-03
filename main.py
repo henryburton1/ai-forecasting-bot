@@ -362,7 +362,7 @@ if __name__ == "__main__":
         skip_previously_forecasted_questions=False,
         llms={
             "default": GeneralLlm(
-                model="openai/o3-mini",  # o3 mini does the forecasting
+                model="perplexity/o3-mini",  # o3 mini does the forecasting
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
