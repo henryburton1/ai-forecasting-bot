@@ -358,7 +358,8 @@ if __name__ == "__main__":
         use_research_summary_to_forecast=False,
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
-        skip_previously_forecasted_questions=True,
+        #Important to keep the following in mind:
+        skip_previously_forecasted_questions=False,
         llms={
             "default": GeneralLlm(
                 model="openai/o3-mini",  # o3 mini does the forecasting
