@@ -392,7 +392,7 @@ template_bot = TemplateForecaster(
         #     "summarizer": "openai/gpt-4o-mini",
         # },
     )
-    '''
+'''
 
     if run_mode == "tournament":
         forecast_reports = asyncio.run(
