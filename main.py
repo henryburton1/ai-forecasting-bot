@@ -352,28 +352,28 @@ if __name__ == "__main__":
         "test_questions",
     ], "Invalid run mode"
 
-template_bot = TemplateForecaster(
-    research_reports_per_question=1,
-    predictions_per_research_report=5,
-    use_research_summary_to_forecast=False,
-    publish_reports_to_metaculus=True,
-    folder_to_save_reports_to=None,
-    skip_previously_forecasted_questions=True,
-    llms={
-        "default": GeneralLlm(
-            model="openai/o3-mini",  # o3 mini does the forecasting
-            temperature=0.3,
-            timeout=40,
-            allowed_tries=2,
-        ),
-        "summarizer": GeneralLlm(
-            model="anthropic/claude-sonnet-3.7-latest",  # Claude Sonnet helps with summarizing research
-            temperature=0.1,
-            timeout=40,
-            allowed_tries=2,
-        )
-    }
-)
+    template_bot = TemplateForecaster(
+        research_reports_per_question=1,
+        predictions_per_research_report=5,
+        use_research_summary_to_forecast=False,
+        publish_reports_to_metaculus=True,
+        folder_to_save_reports_to=None,
+        skip_previously_forecasted_questions=True,
+        llms={
+            "default": GeneralLlm(
+                model="openai/o3-mini",  # o3 mini does the forecasting
+                temperature=0.3,
+                timeout=40,
+                allowed_tries=2,
+            ),
+            "summarizer": GeneralLlm(
+                model="anthropic/claude-sonnet-3.7-latest",  # Claude Sonnet helps with summarizing research
+                temperature=0.1,
+                timeout=40,
+                allowed_tries=2,
+            )
+        }
+    )
 '''
     template_bot = TemplateForecaster(
         research_reports_per_question=1,
