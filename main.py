@@ -374,7 +374,7 @@ template_bot = TemplateForecaster(
         )
     }
 )
-    '''
+'''
     template_bot = TemplateForecaster(
         research_reports_per_question=1,
         predictions_per_research_report=5,
