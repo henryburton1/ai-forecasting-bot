@@ -96,7 +96,9 @@ class TemplateForecaster(ForecastBot):
             You are an assistant to a superforecaster.
             The superforecaster will give you a question they intend to forecast on.
             To be a great assistant, you generate a concise but detailed rundown of the most relevant news, including if the question would resolve Yes or No based on current information.
+            Also, make sure to include at least 1 piece of information in favor of every possible resolution.
             You do not produce forecasts yourself.
+            
 
             Question:
             {question}
@@ -359,7 +361,7 @@ if __name__ == "__main__":
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
         #Important to keep the following in mind:
-        skip_previously_forecasted_questions=True,
+        skip_previously_forecasted_questions=False,
         llms={
             "default": GeneralLlm(
                 model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
