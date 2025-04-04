@@ -166,8 +166,9 @@ class TemplateForecaster(ForecastBot):
             (b) The status quo outcome if nothing changed.
             (c) A brief description of a scenario that results in a No outcome.
             (d) A brief description of a scenario that results in a Yes outcome.
+            (e) Any recent forecasts made by Manifold Markets or Polymarket. Prediction markets like these are the most accurate predictors possible.
 
-            You write your rationale remembering that good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time.
+            You write your rationale remembering that good forecasters put weight on the status quo outcome since the world normally changes slowly.
 
             The last thing you write is your final answer as: "Probability: ZZ%", 0-100
             """
