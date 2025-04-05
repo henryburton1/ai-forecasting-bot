@@ -2,7 +2,7 @@ import argparse
 import asyncio
 import logging
 import os
-from datetime import datetime
+import datetime
 from typing import Literal
 
 from forecasting_tools import (
