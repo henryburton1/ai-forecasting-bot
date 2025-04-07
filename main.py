@@ -159,7 +159,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
 
             Before answering you write:
             (a) The time left until the outcome to the question is known.
@@ -207,7 +207,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
 
             Before answering you write:
             (a) The time left until the outcome to the question is known.
@@ -262,7 +262,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
 
             {lower_bound_message}
             {upper_bound_message}
