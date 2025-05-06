@@ -21,8 +21,6 @@ from forecasting_tools import (
     SmartSearcher,
     clean_indents,
 )
-from forecasting_tools.llm_proxy import list_available_models
-print(list_available_models())
 
 logger = logging.getLogger(__name__)
 
@@ -367,12 +365,17 @@ if __name__ == "__main__":
         skip_previously_forecasted_questions=False, #datetime.datetime.now().time() < datetime.time(23, 30),
         llms={
             "default": GeneralLlm(
-                model="metaculus/anthropic/claude-3-7-sonnet-20250415",  # Replace with the correct identifier
+                model="metaculus/anthropic/claude-3-7-sonnet-20250219",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
-            "summarizer": "openai/gpt-4o-mini"
+            "summarizer": GeneralLlm(
+                model="metaculus/anthropic/claude-3-7-sonnet-20250219",
+                temperature=0.3,
+                timeout=40,
+                allowed_tries=2,
+            )
         }
     )
     
