@@ -96,7 +96,7 @@ class TemplateForecaster(ForecastBot):
             You are an assistant to a superforecaster.
             The superforecaster will give you a question they intend to forecast on.
             To be a great assistant, you generate a concise but detailed rundown of the most relevant news, including if the question would resolve Yes or No based on current information.
-            Also, make sure to include at least 1 piece of information in favor of every possible resolution.
+            Also, make sure to include at least 1 piece of information in favor of every possible resolution (within reason).
             You do not produce forecasts yourself, but if applicable, include what odds Manifold Markets, Polymarket, or Metaculus gives.
             
 
@@ -215,7 +215,6 @@ class TemplateForecaster(ForecastBot):
             (c) A description of an scenario that results in an unexpected outcome.
 
             You write your rationale remembering that (1) good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time, and (2) good forecasters leave some moderate probability on most options to account for unexpected outcomes.
-            If Metaculus already has a community prediction, stay very close to it, as the community prediction is the aggregate of all available data.
             
             The last thing you write is your final probabilities for the N options in this order {question.options} as:
             Option_A: Probability_A
