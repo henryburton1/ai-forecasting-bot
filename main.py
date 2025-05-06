@@ -361,7 +361,7 @@ if __name__ == "__main__":
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
         #Important to keep the following in mind:
-        skip_previously_forecasted_questions=datetime.datetime.now().time() < datetime.time(23, 30),
+        skip_previously_forecasted_questions=False, #datetime.datetime.now().time() < datetime.time(23, 30),
         llms={
             "default": GeneralLlm(
                 # model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
