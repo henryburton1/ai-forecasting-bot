@@ -365,13 +365,13 @@ if __name__ == "__main__":
         llms={
             "default": GeneralLlm(
                 # model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
-                model="metaculus/anthropic/claude-sonnet-3.7-latest",
+                model="metaculus/anthropic/claude-3-7-sonnet-latest",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
             "summarizer": GeneralLlm(
-                model="metaculus/anthropic/claude-sonnet-3.7-latest",  # Claude Sonnet helps with summarizing research
+                model="metaculus/anthropic/claude-3-7-sonnet-latest",  # Claude Sonnet helps with summarizing research
                 temperature=0.1,
                 timeout=40,
                 allowed_tries=2,
