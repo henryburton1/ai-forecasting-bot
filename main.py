@@ -348,6 +348,9 @@ if __name__ == "__main__":
     run_mode: Literal["tournament", "quarterly_cup", "test_questions"] = (
         args.mode
     )
+    from forecasting_tools.llm_proxy import list_available_models
+print(list_available_models())
+
     assert run_mode in [
         "tournament",
         "quarterly_cup",
@@ -364,18 +367,12 @@ if __name__ == "__main__":
         skip_previously_forecasted_questions=False, #datetime.datetime.now().time() < datetime.time(23, 30),
         llms={
             "default": GeneralLlm(
-                # model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
-                model="metaculus/anthropic/claude-3-7-sonnet-latest",
+                model="metaculus/anthropic/claude-3-7-sonnet-20250415",  # Replace with the correct identifier
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
-            "summarizer": GeneralLlm(
-                model="metaculus/anthropic/claude-3-7-sonnet-latest",  # Claude Sonnet helps with summarizing research
-                temperature=0.1,
-                timeout=40,
-                allowed_tries=2,
-            )
+            "summarizer": "openai/gpt-4o-mini"
         }
     )
     
