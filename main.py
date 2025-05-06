@@ -365,13 +365,13 @@ if __name__ == "__main__":
         skip_previously_forecasted_questions=False, #datetime.datetime.now().time() < datetime.time(23, 30),
         llms={
             "default": GeneralLlm(
-                model="metaculus/anthropic/claude-3-7-sonnet-20250219",
+                model="metaculus/anthropic/claude-3-7-sonnet-latest",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
             "summarizer": GeneralLlm(
-                model="metaculus/anthropic/claude-3-7-sonnet-20250219",
+                model="metaculus/anthropic/claude-3-7-sonnet-latest",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
