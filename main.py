@@ -21,6 +21,8 @@ from forecasting_tools import (
     SmartSearcher,
     clean_indents,
 )
+from forecasting_tools.llm_proxy import list_available_models
+print(list_available_models())
 
 logger = logging.getLogger(__name__)
 
@@ -348,8 +350,6 @@ if __name__ == "__main__":
     run_mode: Literal["tournament", "quarterly_cup", "test_questions"] = (
         args.mode
     )
-    from forecasting_tools.llm_proxy import list_available_models
-print(list_available_models())
 
     assert run_mode in [
         "tournament",
