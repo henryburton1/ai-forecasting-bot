@@ -365,7 +365,7 @@ if __name__ == "__main__":
         llms={
             "default": GeneralLlm(
                 # model="metaculus/openai/o3-mini",  # o3 mini does the forecasting
-                model="metaculus/anthropic/claude-sonnet-3.7-latest"
+                model="metaculus/anthropic/claude-sonnet-3.7-latest",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
