@@ -430,4 +430,4 @@ if __name__ == "__main__":
         forecast_reports = asyncio.run(
             template_bot.forecast_questions(questions, return_exceptions=True)
         )
-    TemplateForecaster.log_report_summary(forecast_reports)  # type: ignore
+    #TemplateForecaster.log_report_summary(forecast_reports)  # type: ignore
