@@ -2,7 +2,7 @@ import argparse
 import asyncio
 import logging
 import os
-import datetime
+from datetime import datetime
 from typing import Literal
 
 from forecasting_tools import (
@@ -96,19 +96,16 @@ class TemplateForecaster(ForecastBot):
             You are an assistant to a superforecaster.
             The superforecaster will give you a question they intend to forecast on.
             To be a great assistant, you generate a concise but detailed rundown of the most relevant news, including if the question would resolve Yes or No based on current information.
-            Also, make sure to include at least 1 piece of information in favor of every possible resolution (within reason).
-            You do not produce forecasts yourself, but if applicable, include what odds Manifold Markets, Polymarket, or Metaculus gives.
-            
+            You do not produce forecasts yourself.
 
             Question:
             {question}
             """
         )  # NOTE: The metac bot in Q1 put everything but the question in the system prompt.
         if use_open_router:
-            #model_name = "openrouter/perplexity/sonar-reasoning"
-            model_name = "google/gemini-2.5-pro-exp-03-25:free"
+            model_name = "openrouter/perplexity/sonar-reasoning"
         else:
-            model_name = "perplexity/sonar-pro"  # perplexity/sonar-reasoning and perplexity/sonar are cheaper, but do only 1 search.
+            model_name = "perplexity/sonar-pro"  # perplexity/sonar-reasoning and perplexity/sonar are cheaper, but do only 1 search
         model = GeneralLlm(
             model=model_name,
             temperature=0.1,
@@ -159,7 +156,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.now().strftime("%Y-%m-%d")}.
 
             Before answering you write:
             (a) The time left until the outcome to the question is known.
@@ -167,7 +164,7 @@ class TemplateForecaster(ForecastBot):
             (c) A brief description of a scenario that results in a No outcome.
             (d) A brief description of a scenario that results in a Yes outcome.
 
-            You write your rationale remembering that good forecasters put extra weight on the status quo outcome, as the world often changes quite slowly.
+            You write your rationale remembering that good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time.
 
             The last thing you write is your final answer as: "Probability: ZZ%", 0-100
             """
@@ -207,7 +204,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.now().strftime("%Y-%m-%d")}.
 
             Before answering you write:
             (a) The time left until the outcome to the question is known.
@@ -215,7 +212,7 @@ class TemplateForecaster(ForecastBot):
             (c) A description of an scenario that results in an unexpected outcome.
 
             You write your rationale remembering that (1) good forecasters put extra weight on the status quo outcome since the world changes slowly most of the time, and (2) good forecasters leave some moderate probability on most options to account for unexpected outcomes.
-            
+
             The last thing you write is your final probabilities for the N options in this order {question.options} as:
             Option_A: Probability_A
             Option_B: Probability_B
@@ -261,7 +258,7 @@ class TemplateForecaster(ForecastBot):
             Your research assistant says:
             {research}
 
-            Today is {datetime.datetime.now().strftime("%Y-%m-%d")}.
+            Today is {datetime.now().strftime("%Y-%m-%d")}.
 
             {lower_bound_message}
             {upper_bound_message}
@@ -348,7 +345,6 @@ if __name__ == "__main__":
     run_mode: Literal["tournament", "quarterly_cup", "test_questions"] = (
         args.mode
     )
-
     assert run_mode in [
         "tournament",
         "quarterly_cup",
@@ -361,43 +357,17 @@ if __name__ == "__main__":
         use_research_summary_to_forecast=False,
         publish_reports_to_metaculus=True,
         folder_to_save_reports_to=None,
-        #Important to keep the following in mind:
-        skip_previously_forecasted_questions=datetime.datetime.now().time() < datetime.time(23, 30),
-        llms={
+        skip_previously_forecasted_questions=True,
+        llms={  # choose your model names or GeneralLlm llms here, otherwise defaults will be chosen for you
             "default": GeneralLlm(
                 model="metaculus/anthropic/claude-3-7-sonnet-latest",
                 temperature=0.3,
                 timeout=40,
                 allowed_tries=2,
             ),
-            "summarizer": GeneralLlm(
-                model="metaculus/anthropic/claude-3-7-sonnet-latest",
-                temperature=0.3,
-                timeout=40,
-                allowed_tries=2,
-            )
-        }
+            "summarizer": "metaculus/anthropic/claude-3-7-sonnet-latest",
+        },
     )
-    
-    '''
-    template_bot = TemplateForecaster(
-        research_reports_per_question=1,
-        predictions_per_research_report=5,
-        use_research_summary_to_forecast=False,
-        publish_reports_to_metaculus=True,
-        folder_to_save_reports_to=None,
-        skip_previously_forecasted_questions=True,
-        # llms={  # choose your model names or GeneralLlm llms here, otherwise defaults will be chosen for you
-        #     "default": GeneralLlm(
-        #         model="metaculus/anthropic/claude-3-5-sonnet-20241022",
-        #         temperature=0.3,
-        #         timeout=40,
-        #         allowed_tries=2,
-        #     ),
-        #     "summarizer": "openai/gpt-4o-mini",
-        # },
-    )
-    '''
 
     if run_mode == "tournament":
         forecast_reports = asyncio.run(
@@ -411,8 +381,7 @@ if __name__ == "__main__":
         template_bot.skip_previously_forecasted_questions = False
         forecast_reports = asyncio.run(
             template_bot.forecast_on_tournament(
-                32564, return_exceptions=True
-                #MetaculusApi.CURRENT_QUARTERLY_CUP_ID, return_exceptions=True
+                MetaculusApi.CURRENT_QUARTERLY_CUP_ID, return_exceptions=True
             )
         )
     elif run_mode == "test_questions":
@@ -430,4 +399,4 @@ if __name__ == "__main__":
         forecast_reports = asyncio.run(
             template_bot.forecast_questions(questions, return_exceptions=True)
         )
-    #TemplateForecaster.log_report_summary(forecast_reports)  # type: ignore
+    TemplateForecaster.log_report_summary(forecast_reports)  # type: ignore
